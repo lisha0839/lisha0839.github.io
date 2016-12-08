@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul{
+				margin:0;
+				padding:0;
+				list-style: none;
+				width: 660px;
+				margin:50px auto;
+			}
+			li{
+				width: 150px;
+				height: 150px;
+				border:2px solid #fff;
+				float: left;
+				background-size: 100%;
+				margin-right:10px;
+				margin-bottom: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="button" value="随机排序" id="btn"/>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<script src="move.js"></script>
+		<script>
+			var btn = document.getElementById('btn');
+			var lis = document.getElementsByTagName('li');
+			var arr = [];//存碰撞的li
+			var min = 9999999;
+			var ele = null;
+			//布局转化
+			for(var i=0;i<lis.length;i++){
+				lis[i].style.backgroundImage = 'url(img/'+(i+1)+'.jpg)';
+				lis[i].style.left = lis[i].offsetLeft + 'px';
+				lis[i].style.top = lis[i].offsetTop + 'px';
+				//自定义属性l,t记录自己的位置
+				lis[i].l = lis[i].offsetLeft;
+				lis[i].t = lis[i].offsetTop;
+			}
+			for(var i=0;i<lis.length;i++){
+				lis[i].style.position = 'absolute';
+				lis[i].style.margin = 0;
+				drag(lis[i]);
+			}
+			//拖拽
+			function drag(obj){
+				obj.onmousedown = function(e){
+					obj.style.zIndex = 10;
+					var disX = e.clientX - obj.offsetLeft;
+					var disY = e.clientY - obj.offsetTop;
+					document.onmousemove = function(e){	
+						var l = e.clientX - disX;
+						var t = e.clientY - disY;
+						if (l < 0) {
+                            l = 0;
+                        } else if (l > window.innerWidth - obj.offsetWidth) {
+                            l = window.innerWidth - obj.offsetWidth;
+                        }
+                        if (t < 0) {
+                            t = 0;
+                        } else if (t > window.innerHeight - obj.offsetHeight) {
+                            t = window.innerHeight - obj.offsetHeight;
+                        }
+						obj.style.left = l + 'px';
+						obj.style.top = t + 'px';
+						//先清除arr和边框
+						for(var i=0;i<arr.length;i++){
+							arr[i].style.borderColor = '';
+						}
+						arr = [];
+						//move鼠标移动的时候，碰到的li放入arr里
+						for(var i=0;i<lis.length;i++){
+							//自己跳过
+							if(lis[i] === obj){
+								continue;
+							}
+							//碰到的放入数组，边框变色
+							if(duang(obj,lis[i])){
+								arr.push(lis[i]);
+								lis[i].style.borderColor = 'red';
+							}
+						}
+					}
+					document.onmouseup = function(e){
+						obj.style.zIndex = '';
+						var x = e.clientX;
+						var y = e.clientY;
+						console.log(arr)
+						//如果arr长度为0，证明没碰上，回到原来自己的位置
+						if(arr.length == 0){
+							move(obj,{left:obj.l,top:obj.t},500,'easeBoth');
+						}else{
+							for(var i=0;i<arr.length;i++){
+								arr[i].style.borderColor = '';
+							}
+							//在arr里（碰到的li），计算出中心距离最短的，互换位置
+							for(var i=0;i<arr.length;i++){
+								var L = Math.abs(x-(arr[i].offsetLeft + arr[i].offsetWidth/2));
+								var T = Math.abs(y-(arr[i].offsetTop + arr[i].offsetHeight/2));
+								var d = Math.sqrt(L*L + T*T);
+								if(d < min){
+									min = d;
+									ele = arr[i];
+								}
+							}
+							move(obj,{left:ele.l,top:ele.t},500,'easeBoth');
+							move(ele,{left:obj.l,top:obj.t},500,'easeBoth',function(){
+								//换完位置，重新记录当前坐标
+								ele.l = ele.offsetLeft;
+								ele.t = ele.offsetTop;
+								obj.l = obj.offsetLeft;
+								obj.t = obj.offsetTop;
+								//重置参数
+								arr = [];
+								min = 9999999;
+								ele = null;
+							});
+						}
+						document.onmousemove = document.onmouseup = null;
+					}
+					return false;
+				}
+			}
+			//碰撞检测
+			function duang(obj1,obj2){
+				var pos1 = obj1.getBoundingClientRect();
+				var pos2 = obj2.getBoundingClientRect();
+				if(pos1.right < pos2.left || pos1.bottom < pos2.top || pos1.left > pos2.right || pos1.top > pos2.bottom){
+					return false;
+				}else{
+					return true;
+				}
+			}
+			btn.onclick = function(){
+				for(var i=0;i<lis.length;i++){
+					arr.push({l:lis[i].l,t:lis[i].t});
+				}
+				arr.sort(function(a,b){
+					return Math.random()-0.5;
+				})
+				for(var i=0;i<lis.length;i++){
+					fn(lis[i],i);
+				}
+				arr = [];
+				function fn(obj,i){
+					move(obj,{left:arr[i].l,top:arr[i].t},500,'easeBoth',function(){
+						obj.l = obj.offsetLeft;
+						obj.t = obj.offsetTop;
+					});
+				}
+			}
+		</script>
+	</body>
+</html>

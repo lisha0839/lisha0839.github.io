@@ -11,6 +11,5 @@ case.js
 project.js
 	项目池设置
 
-技能展示一屏有bug
 
 

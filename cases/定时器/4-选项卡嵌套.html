@@ -1,0 +1,209 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+	li{
+		list-style: none;
+		cursor: pointer;	
+	}
+	ul{
+		margin: 0;
+		padding: 0;
+	}
+	#box{
+		border: 5px solid #E7E7E7;
+		height:400px;
+		width: 800px;
+		overflow: hidden;
+		margin: 0 auto;
+	}
+	#box>ul{
+		width:100px;
+		height: 100%;
+		float: left;
+	}
+	#box>ul li{
+		line-height: 99px;
+		text-align: center;
+		background-color: #000;
+		border-bottom: 1px solid #E7E7E7;
+		color:white;
+	}
+	#box>ul .active{
+		background-color: red;
+		color:black;
+	}
+	#box div{
+		float: left;
+		width: 700px;
+		height: 100%;
+		position: relative;
+		display: none;
+	}
+	#box img{
+		width: 100%;
+		height: 100%;
+	}
+	#box div ul{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
+	#box div li{
+		float: left;
+		border-right: 1px solid white;
+		background-color: black;
+		opacity: .7;
+		line-height: 30px;
+		margin-right: -1px;
+		color:white;
+		text-align: center;
+	}
+	#box div .active{
+		background-color: #EF3163;
+	}
+	.div1 li,.div3 li{
+		width:175px;
+	}
+	.div2 li,.div4 li{
+		width:350px;
+	}
+	#box .show{
+		display: block;
+	}
+</style>
+</head>
+
+<body>
+	<div id="box">
+		<ul>
+			<li>暖色调</li>
+			<li>金色夕阳</li>
+			<li>灰色格调</li>
+			<li>baby</li>
+		</ul>
+		<div class="div1">
+			<img src="img/img1.gif" alt="" />
+			<ul>
+				<li>暖色键盘</li>
+				<li>惬意时光</li>
+				<li>午后</li>
+				<li>一杯苦咖啡</li>
+			</ul>
+		</div>
+		<div class="div2">
+			<img src="img/img5.gif" alt="" />
+			<ul>
+				<li>街边夕阳</li>
+				<li>金色稻草</li>
+			</ul>
+		</div>
+		<div class="div3">
+			<img src="img/img7.gif" alt="" />
+			<ul>
+				<li>灰色通讯</li>
+				<li>咖啡'配'饼干</li>
+				<li>孤单键盘</li>
+				<li>枯树</li>
+			</ul>
+		</div>
+		<div class="div4">
+			<img src="img/img11.gif" alt="" />
+			<ul>
+				<li>baby素材一</li>
+				<li>baby素材二</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+
+var arr=[
+	[ "暖色调", ["暖色键盘","惬意时光","午后","一杯苦咖啡"],["img/img1.gif","img/img2.gif","img/img3.gif","img/img4.gif"]],
+
+	["金色夕阳",["街边夕阳","金色稻草"],["img/img5.gif","img/img6.gif"]],
+
+	["灰色格调",["灰色通讯","咖啡'配'饼干","孤单键盘","枯树"],["img/img7.gif","img/img8.gif","img/img9.gif","img/img10.gif"]],
+
+	["baby",["baby素材一","baby素材二"],["img/img11.gif","img/img12.gif"]]
+];
+var box = document.getElementById('box');
+var leftLis = box.getElementsByTagName('ul')[0].getElementsByTagName('li');
+var divs = box.getElementsByTagName('div');
+var time = null;
+var n1 = 0;
+var n2 = 0;
+//初始化
+leftLis[0].className = 'active';
+divs[0].className = 'show';
+divs[0].getElementsByTagName('img')[0].src = arr[0][2][0];
+divs[0].getElementsByTagName('li')[0].className = 'active';
+for(var i=0;i<leftLis.length;i++){
+	fn(i);
+}
+function fn(n){
+	var img = divs[n].getElementsByTagName('img')[0];
+	var lis = divs[n].getElementsByTagName('li');
+	leftLis[n].onclick = function(){
+		for(var i=0;i<leftLis.length;i++){
+			leftLis[i].className = '';
+			divs[i].className = '';
+		}
+		leftLis[n].className = 'active';
+		divs[n].className = 'show';
+		for(var i=0;i<lis.length;i++){
+			lis[i].className = '';
+		}
+		lis[0].className = 'active';
+		n1 = n;
+		n2 = 0;
+	}
+	for(var i=0;i<lis.length;i++){
+		lis[i].style.width = 700/arr[n][1].length + 'px';
+		lis[i].index = i;
+		lis[i].onclick = function(){
+			for(var i=0;i<lis.length;i++){
+				lis[i].className = '';
+			}
+			this.className = 'active';
+			img.src = arr[n][2][this.index];
+			n2 = this.index;
+		}
+	}
+}
+autoPlay();
+box.onmouseover = function(){
+	clearInterval(time);
+}
+box.onmouseout = function(){
+	autoPlay();
+}
+function autoPlay(){
+	time = setInterval(function(){
+		n2++;
+		if(n2 == arr[n1][1].length){
+			n1++;
+			if(n1 == leftLis.length){
+				n1 = 0;
+			}
+			n2 = 0;
+		}
+		var img = divs[n1].getElementsByTagName('img')[0];
+		var lis = divs[n1].getElementsByTagName('li');
+		for(var i=0;i<leftLis.length;i++){
+			leftLis[i].className = '';
+			divs[i].className = '';
+		}
+		leftLis[n1].className = 'active';
+		divs[n1].className = 'show';
+		for(var i=0;i<lis.length;i++){
+			lis[i].className = '';
+		}
+		lis[n2].className = 'active';
+		img.src = arr[n1][2][n2];
+	},1000)
+}
+</script>

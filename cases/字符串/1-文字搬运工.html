@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文字搬运工</title>
+<style type="text/css">
+	#box{
+		width:700px;
+		border: 5px solid #ccc;
+		margin: 0 auto;
+		font-size: 12px;
+	}
+	#box:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	textarea,p{
+		width: 280px;
+		height: 200px;
+		border: 1px dotted black;
+		resize: none;
+		margin: 10px;
+		float: left;
+	}
+	#box div{
+		float: left;
+		width: 90px;
+	}
+	a,span{
+		text-decoration: none;
+		display: block;
+		line-height: 40px;
+		width:90px;
+		background-color: #F76300;
+		color: white;
+		margin-top: 10px;
+		text-align: center;
+	}
+	a:hover{
+		background-color: #C65218;
+	}
+	span{
+		background-color: white;
+		color:black;
+		font-weight: bold;
+	}
+	p{
+		float: right;
+		background-color: #63EFF7;
+	}
+	ul{
+		margin: 0;
+		padding: 0;
+		opacity: 0;
+	}
+	li{
+		width: 9px;
+		height: 9px;
+		list-style-type: none;
+		margin: 0 1px;
+		background-color:#FF6600;
+		float: left;
+	}
+	.active{
+		background-color: red;
+	}
+</style>
+</head>
+<body>
+	<div id="box">
+		<textarea>妙味课堂是一支充满温馨并且极富人情味的IT培训团队；2010-2011年，妙味深度关注WEB前端开发领域，为此精心研发出一套灵活而充满趣味的JavaScript课程。2011-2013年，妙味精准研发出最新HTML5\CSS3课程，并推出远程培训课程方案，尝试将线下优良的培训模式移植到远程网络培训中，希望尽最大努力，将一种快乐愉悦的授课体验、结合HTML\CSS\JS知识点，精准传递给妙味课堂的每一位学员。</textarea>
+		<div>
+			<a href="javascript:;">把文字右移</a>
+			<span>0/0</span>
+			<ul>
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		
+		<p></p>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var txt = document.getElementsByTagName('textarea')[0];
+	var oa = document.getElementsByTagName('a')[0];
+	var span = document.getElementsByTagName('span')[0];
+	var op = document.getElementsByTagName('p')[0];
+	var ul = document.getElementsByTagName('ul')[0];
+	var lis = document.getElementsByTagName('li');
+	var onOff = true;
+	oa.onclick = function(){
+		if(onOff){
+			onOff = false;
+			op.innerHTML = '';
+			var str = txt.value;
+			var len = str.length;
+			var i=0;
+			if(len==0){
+				onOff = true;
+				span.innerHTML = i+'/'+len;
+				return;
+			}
+			oa.style.opacity = 0.2;
+			ul.style.opacity = 1;
+			var time = setInterval(function(){
+				i++;
+				txt.innerHTML = str.substring(i);
+				op.innerHTML = str.substr(0,i);
+				span.innerHTML = i+'/'+len;
+				for(var j=0; j<lis.length; j++){
+					lis[j].className = '';
+				}
+				lis[i%lis.length].className = 'active';
+				if(i==len){
+					clearInterval(time);
+					oa.style.opacity =1;
+					ul.style.opacity = 0;
+					onOff = true;
+				}
+			},50);
+		}
+	}
+</script>

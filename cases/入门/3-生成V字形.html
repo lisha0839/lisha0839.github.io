@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>作业3-生成V字高级版</title>
+	</head>
+	<style type="text/css">
+		#box{
+			width:250px;
+			height:250px;
+			border:1px solid #000;
+			position:absolute;
+			top:50px;
+		}
+		#box div{
+			width:50px;
+			height:50px;
+			line-height:50px;
+			text-align:center;
+			border:1px solid #000;
+			color:#fff;
+			background:red;
+			position:absolute;
+		}
+	</style>
+	<body>
+		<input type="button" value="生成"/>
+		<div id="box"></div>
+		<script type="text/javascript">
+			var btn = document.getElementsByTagName('input')[0];
+			var box = document.getElementById('box');
+			var aDiv = box.getElementsByTagName('div');
+			var str = '';
+			var len = 5;
+			var n = 0;
+			var dic = 0;
+			
+			btn.onclick = function(){
+				
+				for(var i=0; i<len; i++){
+					if( i<len/2 ){
+							n = i;
+						}else{
+							n = len-i-1;
+					}
+					if( dic==0 ){//向右
+						
+						str += '<div style="right:'+n*50+'px;top:'+i*50+'px;">'+(i+1)+'</div>';
+						
+					}else if( dic==1 ){//向左
+						
+						str += '<div style="left:'+n*50+'px;top:'+i*50+'px;">'+(i+1)+'</div>';
+						
+					}else if( dic==2 ){//向下
+						
+						str += '<div style="left:'+i*50+'px;bottom:'+n*50+'px;">'+(i+1)+'</div>';
+						
+					}else{//向上
+						
+						str += '<div style="left:'+i*50+'px;top:'+n*50+'px;">'+(i+1)+'</div>';
+					}
+				}
+				dic++;
+				if( dic==4 ){
+					dic = 0; 
+				}
+				
+				box.innerHTML = str;
+				str='';
+			}
+			
+		</script>
+	</body>
+</html>

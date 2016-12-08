@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 260px;
+			    margin: 0 auto;
+			    background: #6277ce;
+			    padding: 10px;
+			    overflow: hidden;
+			}
+			#box h3{
+				padding: 5px;
+				font-size: 40px;
+				color: #fff;
+			}
+			#box h4{
+				padding: 5px;
+				color: #c7f97e;
+				font-size: 22px;
+			}
+			.sel{
+				padding: 5px;
+				color: #fff;
+			}
+			.sel select{
+				margin-right:10px ;
+			}
+			
+			.sel select:nth-of-type(2){
+				margin-left: 20px;
+			}
+			
+			
+			#date{
+				width: 210px;
+			}
+			#date li{
+				width: 30px;
+				height: 30px;
+				float: left;
+				color: #a2cbf3;
+				text-align: center;
+				line-height: 30px;
+				list-style: none;
+			}
+			#date span{
+				float: left;
+				width: 30px;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				color: #fff;
+			}
+			#date span.active{
+				background: #ce709d;
+				color: #fff;
+				font-weight: bold;
+				border-radius: 50%;
+			}
+			#date span.gray{
+				color:lightgray;
+			}
+		</style>	
+	</head>
+	<body>
+		<div id="box">
+			<h3></h3>
+			<h4></h4>
+			<div class="sel">
+				<select></select>年
+				<select></select>月
+			</div>
+			<div id="date">
+				<ul>
+					<li>日</li>
+					<li>一</li>
+					<li>二</li>
+					<li>三</li>
+					<li>四</li>
+					<li>五</li>
+					<li>六</li>
+				</ul>
+				<div></div>
+			</div>
+		</div>
+		<script>
+			var h3 = document.getElementsByTagName('h3')[0];
+			var h4 = document.getElementsByTagName('h4')[0];
+			var selects = document.getElementsByTagName('select');
+			var div = document.getElementById('date').getElementsByTagName('div')[0];
+			var span = div.getElementsByTagName('span');
+			
+			//选框初始化
+			fn0();
+			function fn0(){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = date.getMonth()+1;
+				var str = str1 = '';
+				for(var i=2025; i>=1970; i--){
+					if(i==year){
+						str += '<option value="'+i+'" selected>'+i+'</option>';
+					}else{
+						str += '<option value="'+i+'">'+i+'</option>';
+					}
+				}
+				for(var i=1; i<=12; i++){
+					if(i==month){
+						str1 += '<option value="'+i+'" selected>'+i+'</option>';
+					}else{
+						str1 += '<option value="'+i+'">'+i+'</option>';
+					}
+				}
+				selects[0].innerHTML = str;
+				selects[1].innerHTML = str1;
+			}
+			
+			gettime();
+			setInterval(function(){
+				gettime();
+			},1000);
+			
+			/*选框值变化*/
+			selects[0].onchange = selects[1].onchange = function(){
+				var y = selects[0].value;
+				var m = selects[1].value-1;
+				fn(y,m);				
+			}
+			
+			mm()//日历初始化
+			function mm(){
+				var date = new Date();
+				var y1 = date.getFullYear();
+				var m1 = date.getMonth();
+				fn(y1,m1);
+			}
+			
+			function fn(y,m){
+				var num = 42;
+				var str = '';
+				/*上个月有多少天*/
+				var date = new Date(new Date(y,m).setDate(0));
+				var n1 =  date.getDate();
+				/*本月1号是星期几*/
+				var date = new Date(y,m,1);
+				var n2 =  date.getDay();
+				//n1 = n1-n2+1;
+				for(var i=0; i<n2; i++){
+					str = '<span class="gray">'+n1+'</span>'+str;
+					n1--;
+					num--;
+				}
+				/*本月有多少天*/
+				var date = new Date(new Date(y,m+1).setDate(0));
+				var year = date.getFullYear();
+				var Month = date.getMonth();
+				var n3 =  date.getDate();
+				/*今天是多少号*/
+				var date = new Date();
+				var now = date.getDate();
+				for(var i=0; i<n3; i++){
+					if((i+1) == now){
+						str += '<span class="active">'+(i+1)+'</span>';
+					}else{
+						str += '<span>'+(i+1)+'</span>';
+					}
+					num--;
+				}
+				for(var i=0; i<num; i++){
+					str += '<span class="gray">'+(i+1)+'</span>';
+				}
+				div.innerHTML = str;
+			}
+			
+			/*获取时间*/
+			function gettime(){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = date.getMonth();
+				var day = date.getDate();
+				var xq = date.getDay();
+				
+				var h = date.getHours();
+				var m = date.getMinutes();
+				var s = date.getSeconds();
+			
+				switch(xq){
+					case 0: xq = '星期日';break;
+					case 1: xq = '星期一';break;
+					case 2: xq = '星期二';break;
+					case 3: xq = '星期三';break;
+					case 4: xq = '星期四';break;
+					case 5: xq = '星期五';break;
+					case 6: xq = '星期六';break;
+				}
+				var str = double(h)+':'+double(m)+':'+double(s);
+				h3.innerHTML = str;
+				h4.innerHTML = year+'年'+(month+1)+'月'+day+'日 '+xq;
+				if(str == '00:00:00'){
+					var date = new Date();
+					var year = date.getFullYear();
+					var month = date.getMonth();
+					fn(year,month);
+				}
+			}
+			function double(n){
+				return n<10 ? '0'+n :''+n;
+			}
+		</script>
+	</body>
+</html>

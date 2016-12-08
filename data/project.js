@@ -14,21 +14,30 @@
 
 var projects = [
 		{
-			projectName:"整屏切换+动画制作“TweenMax库”",
-			projectWebsite:"http://2013.miaov.com/miaov_demo/diagnosite/",
-		    startTime:"2016.01.01",
-			endTime:"至今",
-			projectExplain:"JS整站开发之：整屏切换+动画制作神器“TweenMax库” 导航条和首屏出场动画、3D翻转实现、整屏切换，页面动画计算滚动条滚动距离， 拖动滚动条触发页面动画，完善每一屏内的图片翻转，缩小浏览器，做布局转换。",
-			projectLabel:["html","css3","css","js"],
-			projectThumbnail:"images/icon/1.png"
+			projectName:"百度网盘",
+			projectWebsite:"cases/百度网盘/百度云.html",
+		    startTime:"2016年",
+			endTime:"",
+			projectExplain:"使用原生JavaScript完成，可新建、重命名、移动文件夹，仿系统框选完成对文件夹的多选，拖动文件夹会进行碰撞检测，双击文件夹可进入子文件",
+			projectLabel:["html","css","javaScript"],
+			projectThumbnail:"images/icon/project-3.png"
 		},
 		{
-			projectName:"妙味VIP会员感恩墙",
-			projectWebsite:"http://v.miaov.com/thanks/",
-		    startTime:"2016.01.01",
-			endTime:"至今",
-			projectExplain:"用户观看视频的主页面，其大部分内容是通过JS加载的。为了提高性能，采用了延迟加载、延迟渲染、事件代理等优化方式。此外，还通过监听页面的window.onerror事件对异常信息进行采集，以便及时发现和排查故障。",
-			projectLabel:["html","css3","css","js"],
+			projectName:"新浪开放平台首页静态页面",
+			projectWebsite:"cases/页面/新浪开放平台/sina.html",
+		    startTime:"2015年",
+			endTime:"",
+			projectExplain:"兼容各浏览器，ie兼容至ie6",
+			projectLabel:["html","css"],
+			projectThumbnail:"images/icon/project-1.png"
+		},
+		{
+			projectName:"某电商静态页面",
+			projectWebsite:"cases/页面/商业网站/bussines.html",
+		    startTime:"2015年",
+			endTime:"",
+			projectExplain:"兼容各浏览器",
+			projectLabel:["html","css"],
 			projectThumbnail:"images/icon/project-2.png"
-		}
+		}	
 ]

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+ul , p { width:300px; padding:0; margin:0; margin:0 auto; }
+p { padding-top:20px; }
+li { list-style:none; border-bottom:1px solid #333; height:30px; line-height:30px; }
+.yellow{
+	background-color: yellow;
+}
+.red{
+	background-color: red;
+}
+.green{
+	background-color: green;
+}
+.hover{
+	background-color: black;
+	color: #fff;
+}
+</style>
+</head>
+
+<body>
+
+<ul>
+	<li><input type="checkbox" />信乐团 - 海阔天空</li>
+	<li><input type="checkbox" />五月天 - 倔强</li>
+	<li><input type="checkbox" />薛之谦 - 演员</li>
+	<li><input type="checkbox" />杨宗纬 - 一次就好</li>
+	<li><input type="checkbox" />周杰伦 - 安静</li>
+</ul>
+<p><input type="checkbox" id="all"/> 全选</p>
+
+<script>
+
+	var oUl = document.getElementsByTagName('ul')[0];
+	var op = document.getElementsByTagName('p')[0];
+	var aLi = oUl.getElementsByTagName('li');
+	var aInp = oUl.getElementsByTagName('input');
+	var oBtn = op.getElementsByTagName('input')[0];
+	
+	bg();
+	for(var i=0; i<aLi.length; i++){
+		fn(i);
+	}	
+	function bg(){
+		for(var i=0; i<aLi.length; i++){
+			aLi[i].className = (i%2==0 ? 'red' : 'yellow');
+		}
+	}
+	
+	function fn(n){
+		aInp[n].onclick = function(){//点击：若选中，className为green；若未选中（鼠标移入），为hover；
+			if(this.checked){		
+				aLi[n].className = 'green';
+			}else{
+				aLi[n].className = 'hover';
+			}
+			
+			for(var i=0; i<aLi.length; i++){
+				if(!aInp[i].checked){
+					oBtn.checked = false;
+					break;
+				}
+				oBtn.checked = true;
+			}
+		}
+		
+		aLi[n].onmouseover = function(){//鼠标移入：字体颜色为白色；如果未选中，className为hover
+			this.style.color = '#fff';
+			if(!aInp[n].checked){
+				this.className = 'hover';
+			}
+		}
+		
+		aLi[n].onmouseout = function(){ //鼠标移出：字体颜色为黑色；如果未选中，背景还原
+			this.style.color = '#000';
+			if(!aInp[n].checked){
+				if(n%2==0){
+					aLi[n].className = 'red';
+				}else{
+					aLi[n].className = 'yellow';
+				}
+			}
+		}
+	}
+	
+	oBtn.onclick = function(){  //全选：若选中，所有aInp均选中，且其className为green；
+		if(this.checked){           //若未选中，所有aLi背景还原，且所有aInp均为未选中
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].className = 'green';
+				aInp[i].checked = true;
+			}
+		}else{
+			bg();
+			for(var i=0; i<aLi.length; i++){
+				aInp[i].checked = false;
+			}
+		}
+	}
+</script>
+</body>
+</html>

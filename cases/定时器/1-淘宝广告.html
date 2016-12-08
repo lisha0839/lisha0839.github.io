@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淘宝广告</title>
+	<style type="text/css">
+		#box{
+			width:500px;
+			border:1px solid black;
+			margin: 50px auto 0;
+			position: relative;
+		}
+		img{
+			width:350px;
+			margin: 10px 75px 20px;
+			height: 290px;
+		}
+		ul{
+			margin: 0;
+			padding: 0;
+			position: absolute;
+			top:10px;
+		}
+		ul:nth-of-type(1){
+			left:5px;
+		}
+		ul:nth-of-type(2){
+			right:15px;
+		}
+		li{
+			list-style: none;
+			width:50px;
+			height: 30px;
+			margin: 5px 0;
+			border: 1px solid black;
+			line-height: 30px;
+			text-align: center;
+			cursor: pointer;
+		}
+		.active{
+			color:white;
+			background-color:black; 
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li class="active">连衣裙</li>
+			<li>雪纺</li>
+			<li>T恤</li>
+			<li>铅笔裤</li>
+			<li>婚纱</li>
+			<li>T恤</li>
+			<li>铅笔裤</li>
+			<li>婚纱</li>
+		</ul>
+		<ul>
+			<li>包包</li>
+			<li>凉鞋</li>
+			<li>单鞋</li>
+			<li>太阳镜</li>
+			<li>丝袜</li>
+			<li>T恤</li>
+			<li>铅笔裤</li>
+			<li>婚纱</li>
+		</ul>
+		<img src="img/0.jpg" alt="">
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var box = document.getElementById('box');
+	var img = document.getElementsByTagName('img')[0];
+	var aUl = document.getElementsByTagName('ul');
+	var lis = document.getElementsByTagName('li');
+	var arr = ['img/0.jpg','img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/1.jpg','img/0.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/0.jpg','img/2.jpg','img/1.jpg','img/2.jpg','img/4.jpg','img/3.jpg'];
+	var n = 0;
+	var timer = null;
+
+	fn();
+	function fn(){
+		timer = setInterval(function(){
+			if(n<8){
+				n++;
+				if(n==8){
+					n=lis.length-1;
+				}
+			}else{
+				n--;
+				if(n==7){
+					n=0;
+				}
+			}
+			tab(n);
+		},1000);
+	}
+	
+	for(var i=0; i<lis.length; i++){
+		lis[i].index = i;
+		lis[i].onmouseover = function(){
+			tab(this.index);
+			n = this.index;
+		}
+	}
+	
+	box.onmouseover = function(){
+		clearInterval(timer);
+	}
+	box.onmouseout = function(){
+		fn();
+	}
+	
+	function tab(index){
+		for(var i=0; i<lis.length; i++){
+			lis[i].className = '';
+		}
+		lis[index].className = 'active';
+		img.src = arr[index];
+	}
+</script>

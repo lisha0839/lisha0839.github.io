@@ -20,16 +20,16 @@
 */
 
 var userInfo = {
-    userName: "张三" , 
+    userName: "李莎" , 
     userPortrait:"images/icon/intro_03.png",
-    jobWant:  "web",
-    userQQ:  "1056104999",
-    userEmail:   "1056104999@qq.com",
-    motto:  "置气和悲伤的源头都在于自己，你不听不闻不看，选择权在你置气和悲伤的源头都在于自己，你不听不闻不看，选择权在你置气和悲伤的源头都在于自己，你不听不闻不看，选择权在你置气和悲伤的源头都在于自己，你不听不闻不看，选择权在你", 
-    userPhone: 13141414820,
-    userOrignPlace:  "安徽省蚌埠市怀远县" ,
-    userSeatPlace:  "北京市",
-    userWeibo: "javascript@miaov.com",
+    jobWant:  "前端开发",
+    userQQ:  "627655407",
+    userEmail:   "lisha0839@163.com",
+    motto:  "路在脚下", 
+    userPhone: 18228023527,
+    userOrignPlace:  "四川省广元市苍溪县" ,
+    userSeatPlace:  "成都市",
+    userWeibo: "",
     
 }
 

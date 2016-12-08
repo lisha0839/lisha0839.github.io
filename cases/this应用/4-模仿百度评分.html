@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		a{
+			text-decoration: none;
+			font-size: 50px;
+		}
+	</style>
+</head>
+<body>
+	<p><a href="javascript:;">★</a><a href="javascript:;">★</a><a href="javascript:;">★</a><a href="javascript:;">★</a><a href="javascript:;">★</a></p>
+</body>
+<script type="text/javascript">
+	var as = document.getElementsByTagName('a');
+	var that = -1;
+	var onOff = false;
+	for(var i=0; i<as.length; i++){
+		fn(i);
+	}
+	
+	function fn(n){
+		as[n].onclick = function(){
+			onOff=true;
+			that = n;
+		}
+		
+		as[n].onmouseover = function(){
+			fn1(n);
+		}
+		
+		as[n].onmouseout = function(){
+			fn1(that);
+		}
+		
+		function fn1(j){
+			for(var i=0; i<as.length; i++){
+				as[i].style.color = '';
+			}
+			for(var i=0; i<=j; i++){
+				if(j<2){
+					as[i].style.color = 'green';
+				}else if(j>=2 && j<4){
+					as[i].style.color = 'yellow';
+				}else if(j==4){
+					as[i].style.color = 'red';
+				} 
+			}
+		}
+	}
+</script>
+</html>

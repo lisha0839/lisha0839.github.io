@@ -1,0 +1,76 @@
+body,h1,h2,ul,p{margin:0;padding:0;font-size:14px;}
+body{background:#f3f5f5;}
+li{list-style:none;}
+a{text-decoration:none;}
+a:hover{text-decoration:none;}
+img{border:none;vertical-align:top;}
+.clear:after{content:"";display:block;clear:both;}
+#header{width:100%;height:55px;background:url(img/header-border.gif) repeat-x bottom #ebebeb;position:fixed;top:0;z-index:1;}
+#header .headermain{width:980px;min-width:980px;margin:0 auto;}
+#header h1{float:left;width:234px;height:45px;}
+#header h1 span{display:none;}
+#header .topnav li{float:left;}
+#header .topnav li a{dispaly:block;padding:18px;font:16px/45px "微软雅黑";color:#333;text-align:center;}
+#header .topnav li a:hover{background:#ddd;}
+#header .topnav .libg a{background:url(img/top-nav-bg.gif) no-repeat 70px 28px;}
+#header .topnav .libg a:hover{background:url(img/top-nav-bg.gif) no-repeat 70px 28px #ddd;}
+#header .topnav .lilast{padding-left:198px;}
+#banner{background:url(img/banner-bg.jpg) repeat-x bottom;margin-top:55px;}
+#banner .top{width:1500px;height:350px;margin:0 auto;}
+
+#apply{height:200px;background:url(img/bg_route_display.png);}
+#apply .appul{width:982px;min-width:982px;margin:0 auto;}
+#apply .lin{float:left;margin:18px 8px 18px 0;display:inline;
+				border:1px solid #ccc;}
+#apply .lin a{display:block;padding:3px;width:234px;height:158px;background:url(img/li1.gif) no-repeat 3px 3px #fff;
+			position:relative;z-index:0;}
+#apply .lin a:hover{background:url(img/li1.gif) no-repeat 3px 3px #add5ed;}				
+#apply .lin a p{width:234px;font:18px/44px "黑体";color:#333;background:#fff;
+				text-align:center;position:absolute;bottom:3px;left:3px;}
+#apply  .lin a span{color:#4da3d4;}
+#apply .li4{float:left;margin:19px 0 19px 0px;border:2px solid #fff;}
+#apply .li4 a{display:block;width:225px;height:159px;padding:0;background:url(img/li4.png) no-repeat 84px 30px #cee7f5;
+				position:relative;z-index:0;}
+#apply .li4 a div{position:absolute;bottom:7px;left:0;}
+#apply .li4 a p{width:225px;background:#cee7f5;font:18px/22px "黑体";color:#296f97;text-align:center;}
+
+#main{width:980px;margin:20px auto;border:1px solid #e9ebeb;background:#fff;}
+#main .inform{padding:46px 47px 21px;width:885px;height:98px;position:relative;}
+#main .inform img{width:33px;float:left;padding:4px 6px 4px 2px;}
+#main .inform h2{height:39px;font:22px/39px "微软雅黑";}
+#main .more{position:absolute;right:48px;top:46px;font-size:14px;color:#3c7cb3;}
+#main a:hover{text-decoration:underline;color}
+#main .inform ul li{width:375px;float:left;height:29px;background:url(img/li.gif) no-repeat left center;padding-right:65px;}
+#main .inform ul li a{color:black;font:14px/29px "微软雅黑";display:bolck;float:left;
+				margin-left:10px;}
+#main .inform ul li span{color:#999;float:right;line-height:29px;}
+
+
+#main .SDK{width:840px;height:344px;background:url(img/top-bg.jpg) no-repeat center top;margin:0 auto;position:relative;}
+#main .sdk{width:356px;padding:64px 130px 57px 0;}
+#main  h2{font:bold 32px/55px "微软雅黑";}
+#main  p{font:14px/30px "微软雅黑";color:#999;}
+#main .see{margin-top:7px;display:block;height:40px;width:130px;background:url(img/see.gif) no-repeat;
+				text-align:center;font:20px/40px "微软雅黑";color:#b1b1b1;}
+#main .sdk .img1{position:absolute;right:66px;bottom:0;}
+#main .sdk .img3{position:absolute;right:96px;top:24px;}
+#main .API .img2{position:absolute;top:46px;left:76px;}
+#main .api{float:right;width:356px;padding-top:64px;}
+
+#main .dep{width:840px;margin:0 auto;background:url(img/top-bg.jpg) no-repeat center top;}
+#main .dep h2{padding-top:13px;height:66px;font:22px/66px "微软雅黑";background:url(img/dep.gif) no-repeat left 31px;}
+
+#main .dep li{float:left;padding:0 30px;}
+#main .dep li .text{display:block;width:82px;line-height:30px;text-align:center;color:black;padding-bottom:48px;}
+#main .dep .li1{padding-left:46px;}
+#main .dep .lilast{padding-right:0px;}
+ 
+
+#footer{width:980px;margin:24px auto;border-top:1px solid #e9ebeb;font-size:12px;}
+#footer .contact{width:572px;margin:0 auto;}
+#footer ul{float:left;margin:0 auto;}
+#footer li{float:left;margin:22px 0 13px;border-left:1px solid #d6ccd7;padding:0 19px;display:inline;}
+#footer li a{color:#3ca0d3;font-size:12px;}
+#footer li a:hover{text-decoration:underline;}
+#footer .first{border-left:none;}
+#footer .line{text-align:center;color:#999;}

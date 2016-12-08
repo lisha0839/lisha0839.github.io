@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left:400px;
+				top:200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			var box = document.getElementById('box');
+			box.onmousedown = function(e){
+				var x = e.clientX;
+				var y = e.clientY;
+				var pos = this.getBoundingClientRect();
+				var d = null;
+				if(x<pos.left+10){
+					d = 'left';
+				}
+				if(x>pos.right-10){
+					d = 'right';
+				}
+				if(y<pos.top+10){
+					d = 'top';
+				}
+				if(y>pos.bottom-10){
+					d = 'bottom';
+				}
+				if(x<pos.left+10 &&　y<pos.top+10){
+					d = 'leftTop';
+				}
+				if(x<pos.left+10 && y>pos.bottom-10){
+					d = 'leftBottom';
+				}
+				if(x>pos.right-10 && y<pos.top+10){
+					d = 'rightTop';
+				}
+				if(x>pos.right-10 && y>pos.bottom-10){
+					d = 'rightBottom';
+				}
+				document.onmousemove = function(e){
+					var disX = e.clientX;
+					var disY = e.clientY;
+					switch(d){
+						case 'left':
+							box.style.width = pos.width + (x - disX) + 'px';
+							box.style.left = pos.left - (x - disX) + 'px';
+						break;
+						case 'right':
+							box.style.width = pos.width + (disX - x) + 'px';
+						break;
+						case 'top':
+							box.style.height = pos.height + (y - disY) + 'px';
+							box.style.top = pos.top - (y - disY) + 'px';
+						break;
+						case 'bottom':
+							box.style.height = pos.height + (disY - y) + 'px';
+						break;
+						case 'leftTop':
+							box.style.width = pos.width + (x - disX) + 'px';
+							box.style.left = pos.left - (x - disX) + 'px';
+							box.style.height = pos.height + (y - disY) + 'px';
+							box.style.top = pos.top - (y - disY) + 'px';
+						break;
+						case 'leftBottom':
+							box.style.width = pos.width + (x - disX) + 'px';
+							box.style.left = pos.left - (x - disX) + 'px';
+							box.style.height = pos.height + (disY - y) + 'px';
+						break;
+						case 'rightTop':
+						box.style.height = pos.height + (y - disY) + 'px';
+							box.style.top = pos.top - (y - disY) + 'px';
+							box.style.width = pos.width + (disX - x) + 'px';
+						break;
+						case 'rightBottom':
+							box.style.height = pos.height + (disY - y) + 'px';
+							box.style.width = pos.width + (disX - x) + 'px';
+						break;	
+					}
+				}
+				document.onmouseup = function(){
+					document.onmousemove = document.onmouseup = null;
+				}
+				return false;
+			}
+		</script>
+	</body>
+</html>

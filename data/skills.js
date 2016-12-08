@@ -19,52 +19,48 @@ var skills = {
 		temp:"circle",
 		skillsClassify:[
 		{
-			skillLanguage:"html5",
-			percent:"6%",
-			skillTooltip:[
-				"熟练掌握各类语义化标签",
-				"熟悉对各种标签特性及其相互转换",
-				"H5拖拽、视频音频",
-				"表格，H5新增表单等……"
-			]
-		},
-		{
-			skillLanguage:"CSS3",
-			percent:"90%",
-			skillTooltip:[
-				"掌握浮动及文档流特性",
-				"精通定位、浏览器兼容性",
-				"CSS3圆角阴影字体等样式有实际案例经验",
-				"移动端响应式"
-			]
-		},
-		{
 			skillLanguage:"javascript",
 			percent:"86%",
 			skillTooltip:[
 				"了解数据类型、作用域闭包等语言特性",
-				"掌握定时器、数组字符串及递归、数组去重等",
+				"掌握定时器、数组及字符串等",
 				"深入使用DOM\BOM\EVENT，能完成各类组件开发",
-				"掌握JS的数据调用、ajax实现机制、各类接口调用",
+				"掌握JS的数据调用、ajax实现机制、jsonp跨域各类接口调用",
 				"掌握面向对象编程，对封装、继承、多态等均有了解",
 				"了解正则表达式，熟悉JS兼容性、JS性能提升"
 			]
 		},
 		{
+			skillLanguage:"jQuery",
+			percent:"70%",
+			skillTooltip:[
+				"有使用jQuery的开发经验"
+			]
+		},
+		{
+			skillLanguage:"html5",
+			percent:"70%",
+			skillTooltip:[
+				"熟练掌握各类语义化标签",
+				"熟悉H5文件、拖拽、存储相关内容，有使用音频开发经验"
+			]
+		},
+		{
+			skillLanguage:"CSS3",
+			percent:"70%",
+			skillTooltip:[
+				"掌握浮动及文档流特性，注重浏览器兼容性",
+				"CSS3圆角、transition、transform等",
+				"熟悉移动端开发"
+			]
+		},
+		{
 			skillLanguage:"canvas",
-			percent:"40%",
+			percent:"60%",
 			skillTooltip:[
 				"能熟练使用相关接口绘制各类图形",
 				"能运用canvas开发小游戏",
 				"可封装小型图表等数据可视化技术解决方案"
-			]
-		},
-		{
-			skillLanguage:"jQuery",
-			percent:"60%",
-			skillTooltip:[
-				"移动端响应式",
-				"canvas游戏开发"
 			]
 		}
 		

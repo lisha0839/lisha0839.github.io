@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+   
+</head>
+
+<body>
+
+<form action="" name="form">
+    <p>
+        姓名:<input type="text" name="username"/>
+    </p>
+    <p>
+        年龄:<input type="text" name="age"/>
+    </p>
+    <p>
+        性别: <select name="sex">
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+    </p>
+    <p>
+        <input type="button" value="添加" name="add"/>
+    </p>
+</form>
+    <input type="button" value="反选" class="btn">
+    <input type="button" value="批量删除"  class="btn"> 
+    <table id="tab1" width="100%" border="1">
+        <thead>
+        <tr>
+            <th>
+                <input id="checkAll" type="checkbox" /> 全选
+            </th>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+           <!--  <tr>
+                <td>
+                    <input type="checkbox"/>
+                </td>
+                <td>1</td>
+                <td>周杰伦</td>
+                <td>37</td>
+                <td>男</td>
+                <td>
+                    <a href="javascript:;">上移</a> |
+                    <a href="javascript:;">下移</a> |
+                    <a href="javascript:;">删除</a>
+                </td>
+            </tr> -->
+        </tbody>
+
+    </table>
+    <script type="text/javascript">
+    /*
+        1、根据数据生成表格。
+        2、数据的添加
+        3、全选
+        4、上移下移删除
+        5、排序
+        6、反选
+        7、批量删除（被选中的删除）
+    */
+    var data = [
+            {
+                 'id' : 1,
+                'username' : '周杰伦',
+                'age' : 37,
+                'sex' : '男'
+            },
+            {
+                'id' : 2,
+                'username' : '阿信',
+                'age' : 39,
+                'sex' : '男'
+            },
+            {
+                'id' : 3,
+                'username' : '王俊凯',
+                'age' : 17,
+                'sex' : '男'
+            },
+            {
+                'id' : 4,
+                'username' : '宋仲基',
+                'age' : 31,
+                'sex' : '男'
+            },
+            {
+                'id' : 5,
+                'username' : '赵雅芝',
+                'age' : 62,
+                'sex' : '女'
+            }
+        ];
+       var form = document.getElementsByTagName('form')[0];
+       var userName = form.username;
+       var age = form.age;
+       var sex = form.sex;
+       var addBtn = form.add;
+ 	   var btns = document.getElementsByClassName('btn');
+ 	   var tab1 = document.getElementById('tab1');
+ 	   var checkAll = document.getElementById('checkAll');
+ 	   var tHead = tab1.tHead;
+ 	   var idSort = tHead.rows[0].cells[1];
+ 	   var ageSort = tHead.rows[0].cells[3];
+ 	   var tBody = tab1.tBodies[0];
+ 	   var checks = tBody.getElementsByTagName('input');
+ 	   var num = data.length;
+ 	   	//渲染页面
+ 	   for(var i=0;i<data.length;i++){
+ 	   		create(i);
+ 	   }
+ 	   //生成一行
+ 	   function create(i){
+ 	   		var tr = document.createElement('tr');
+ 	   		var td = document.createElement('td');
+ 	   		var inp = document.createElement('input');
+ 	   		inp.type = 'checkbox';
+ 	   		inp.onclick = function(){
+ 	   			allChecked();
+ 	   		}
+ 	   		td.appendChild(inp);
+ 	   		tr.appendChild(td);
+ 	   		for(var attr in data[i]){
+ 	   			var td2 = document.createElement('td');
+ 	   			td2.innerHTML = data[i][attr];
+ 	   			tr.appendChild(td2);
+ 	   		}
+ 	   		var td3 = document.createElement('td');
+ 	   		var a1 = document.createElement('a');
+ 	   		var a2 = document.createElement('a');
+ 	   		var a3 = document.createElement('a');
+ 	   		var txt = document.createTextNode('|');
+ 	   		var txt2 = document.createTextNode('|');
+ 	   		a1.href = a2.href = a3.href = 'javascript:;';
+ 	   		a1.innerHTML = '上移';
+ 	   		a2.innerHTML = '下移';
+ 	   		a3.innerHTML = '删除';
+ 	   		td3.appendChild(a1);
+ 	   		td3.appendChild(txt);
+ 	   		td3.appendChild(a2);
+ 	   		td3.appendChild(txt2);
+ 	   		td3.appendChild(a3);
+ 	   		tr.appendChild(td3);
+ 	   		tBody.appendChild(tr);
+ 	   		a1.onclick = function(){
+ 	   			var prev = tr.previousElementSibling;
+ 	   			if(prev){
+ 	   				tBody.insertBefore(tr,prev);
+ 	   			}else{
+ 	   				alert('这是第一行了');
+ 	   			}
+ 	   		}
+ 	   		a2.onclick = function(){
+ 	   			var next = tr.nextElementSibling;
+ 	   			if(next){
+ 	   				tBody.insertBefore(next,tr);
+ 	   			}else{
+ 	   				alert('这是最后一行了');
+ 	   			}
+ 	   		}
+ 	   		a3.onclick = function(){
+ 	   			var index = tr.cells[1].innerHTML;
+ 	   			for(var i=0;i<data.length;i++){
+ 	   				if(data[i].id == index){
+ 	   					data.splice(i,1);
+ 	   				}
+ 	   			}
+ 	   			tBody.removeChild(tr);
+ 	   			allChecked();
+ 	   		}	
+ 	   }
+ 	   //添加
+ 	   addBtn.onclick = function(){
+ 	   		var Name = userName.value;
+ 	   		var Age = age.value;
+ 	   		var Sex = sex.value;
+ 	   		if(!Name){
+ 	   			alert('请输入姓名');
+ 	   			return;
+ 	   		}
+ 	   		if(!Age){
+ 	   			alert('请输入年龄');
+ 	   			return;
+ 	   		}
+ 	   		var j = {};
+ 	   		num++;
+ 	   		j.id = num;
+ 	   		j.username = Name;
+ 	   		j.age = Age;
+ 	   		j.sex = Sex;
+ 	   		data.push(j);
+ 	   		create(data.length-1);
+ 	   		allChecked();
+ 	   }
+ 	   //全选
+ 	   checkAll.onclick = function(){
+ 	   		if(this.checked){
+ 	   			for(var i=0;i<checks.length;i++){
+ 	   				checks[i].checked = true;
+ 	   			}
+ 	   		}else{
+ 	   			for(var i=0;i<checks.length;i++){
+ 	   				checks[i].checked = false;
+ 	   			}
+ 	   		}
+ 	   }
+ 	   //判断全选函数
+ 	   function allChecked(){
+ 	   		if(checks.length == 0){
+ 	   			checkAll.checked = false;
+ 	   			return;
+ 	   		}
+ 	   		var n = 0;
+ 	   		for(var i=0;i<checks.length;i++){
+ 	   			if(checks[i].checked){
+ 	   				n++;
+ 	   			}
+ 	   		}
+ 	   		if(n == checks.length){
+ 	   			checkAll.checked = true;
+ 	   		}else{
+ 	   			checkAll.checked = false;
+ 	   		}
+ 	   }
+ 	   //反选
+ 	   btns[0].onclick = function(){
+ 	   	for(var i=0;i<checks.length;i++){
+ 	   		if(checks[i].checked){
+ 	   			checks[i].checked = false;
+ 	   		}else{
+ 	   			checks[i].checked = true;
+ 	   		}
+ 	   	}
+ 	   	allChecked();
+ 	   }
+ 	   //批量删除
+ 	   btns[1].onclick = function(){
+ 	   	for(var i=0;i<checks.length;i++){
+ 	   		//循环判断，哪个checks被选中，删除对应的数据和对应的tr
+ 	   		if(checks[i].checked){
+ 	   			//通过这一行id，来找到data里对应的那个{}
+ 	   			var index = checks[i].parentNode.parentNode.cells[1].innerHTML;
+ 	   			for(var j=0;j<data.length;j++){
+ 	   				if(data[j].id == index){
+ 	   					//删除对应数据
+ 	   					data.splice(j,1);
+ 	   					j--;
+ 	   				}
+ 	   			}
+ 	   			var parent = checks[i].parentNode.parentNode;
+ 	   			//删除对应的tr
+ 	   			tBody.removeChild(parent);
+ 	   			i--;
+ 	   			//动态获取的，所以i和j在删除后需要--,不然就少删一个
+ 	   		}
+ 	   	}
+ 	   	allChecked();
+ 	   }
+ 	   //id排序
+ 	   idSort.onclick = function(){
+ 	   		//1.DOM排序
+ 	   		//sort(this.onOff,1);
+ 	   		//2.数据排序
+ 	   		sort2(this.onOff,'id');
+ 	   		this.onOff = !this.onOff; 
+ 	   }
+ 	   //年龄排序
+ 	   ageSort.onclick = function(){
+ 	   		//1.DOM排序
+ 	   		//sort(this.onOff,3);
+ 	   		//2.数据排序
+ 	   		sort2(this.onOff,'age');
+ 	   		this.onOff = !this.onOff; 
+ 	   }
+ 	   //排序函数1.DOM
+ 	   function sort(onOff,n){
+ 	   	var arr = [];
+ 	   		var child = tBody.children;
+ 	   		for(var i=0;i<child.length;i++){
+ 	   			arr.push(child[i]);
+ 	   		}
+ 	   		//console.log(arr);
+ 	   		if(onOff){
+ 	   			//从小到大
+ 	   			arr.sort(function(a,b){
+ 	   				return a.cells[n].innerHTML - b.cells[n].innerHTML
+ 	   			})
+ 	   		}else{
+ 	   			//从大到小
+ 	   			arr.sort(function(a,b){
+ 	   				return b.cells[n].innerHTML - a.cells[n].innerHTML;
+ 	   			})
+ 	   		}
+ 	   		for(var i=0;i<arr.length;i++){
+ 	   			tBody.appendChild(arr[i]);
+ 	   		}
+ 	   }
+ 	   //排序函数2.数据排序
+ 	   function sort2(onOff,attr){
+ 	   	if(onOff){
+ 	   		//从小到大
+ 	   		data.sort(function(a,b){
+ 	   			return a[attr] - b[attr];
+ 	   		})
+ 	   	}else{
+ 	   		//从大到小
+ 	   		data.sort(function(a,b){
+ 	   			return b[attr] - a[attr];
+ 	   		})
+ 	   	}
+ 	   	tBody.innerHTML = '';
+ 	   	for(var i=0;i<data.length;i++){
+ 	   		create(i);
+ 	   	}
+ 	   }
+    </script>
+</body>
+</html>

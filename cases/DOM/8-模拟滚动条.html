@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin:0;
+				padding: 0;
+			}
+			#left{
+				width: 400px;
+				height: 500px;
+				border: 1px solid #000;
+				float: left;
+				overflow: hidden;
+				position: relative;
+			}
+			#content{
+				width:400px;
+				position: absolute;
+			}
+			#content div{
+				width:400px;
+				height: 200px;
+				background: pink;
+			}
+			#right{
+				width: 50px;
+				height: 500px;
+				background: #000;
+				float: left;
+				position: relative;
+			}
+			span{
+				width: 50px;
+				height: 50px;
+				background: gray;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="left">
+				<div id="content">
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+					<div>4</div>
+				</div>
+			</div>
+			<div id="right">
+				<span></span>
+			</div>
+		</div>
+	</body>
+	<script>
+		var left = document.getElementById('left');
+		var content = document.getElementById('content');
+		var right = document.getElementById('right');
+		var span = document.getElementsByTagName('span')[0];
+		
+		
+		if(content.offsetHeight < left.offsetHeight){
+			span.style.display = 'none';
+		}else{
+			span.style.display = 'block';
+			var bl =( content.offsetHeight-left.offsetHeight) / left.offsetHeight;
+			span.style.height =right.offsetHeight - bl * right.offsetHeight + 'px';
+		}
+		
+		box.onmousewheel = fn;
+		right.onclick = function(e){
+			var t = e.clientY - right.offsetTop;
+			var maxt = right.offsetHeight - span.offsetHeight;
+			if(t>span.offsetTop && t<span.offsetTop+span.offsetHeight){
+				return ; 
+			}
+			t =span.offsetTop+(  t>span.offsetTop ? span.offsetHeight : -span.offsetHeight);
+			scroll(t)
+		}
+		
+		function fn(e){
+			var speed = e.wheelDelta>0 ? -20 : 20;
+			var st = span.offsetTop + speed;
+			scroll(st);
+		}
+		
+		function scroll(t){
+			var maxt = right.offsetHeight - span.offsetHeight;
+			
+			if(t<0){
+				t = 0;
+			}
+			if(t>maxt){
+				t = maxt;
+			}
+			var cbl = t / maxt;
+			content.style.top = -cbl * ( content.offsetHeight-left.offsetHeight) +'px';
+			span.style.top = t + 'px';
+		}
+	</script>
+</html>

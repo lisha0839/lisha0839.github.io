@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 700px;
+				height: 400px;
+				position: relative;
+				margin:100px auto;
+			}
+			#box div{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				background-size:100%;
+				border-radius: 50%;
+			}
+			#box div:nth-of-type(1){
+				left:0;
+				top:10px;
+				background-image:url(img/1.jpg);
+				z-index: 2;
+				opacity: 0.5;
+			}
+			#box div:nth-of-type(2){
+				left:100px;
+				top:0;
+				width: 240px;
+				height: 240px;
+				background-image:url(img/2.jpg);
+				z-index: 3;
+				opacity: 1;
+			}
+			#box div:nth-of-type(3){
+				left:240px;
+				top:10px;
+				background-image:url(img/3.jpg);
+				z-index: 1;
+				opacity: 0.5;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<script src="move.js"></script>
+		<script>
+			var box = document.getElementById('box');
+			var divs = box.getElementsByTagName('div');
+			var arr = [];//存div的数据
+			var arr2 = [];//存div的事件调用函数
+			divs[0].onclick = right;
+			divs[2].onclick = left;
+			for(var i=0;i<divs.length;i++){
+				arr[i] = {
+					left:divs[i].offsetLeft,
+					top:divs[i].offsetTop,
+					width:divs[i].offsetWidth,
+					height:divs[i].offsetHeight,
+					zIndex:getComputedStyle(divs[i]).zIndex,
+					opacity:getComputedStyle(divs[i]).opacity
+				}
+				arr2.push(divs[i].onclick);
+			}
+			function right(){
+				arr.push(arr.shift());
+				arr2.push(arr2.shift());
+				fn();
+			}
+			function left(){
+				arr.unshift(arr.pop());
+				arr2.unshift(arr2.pop());
+				fn();
+			}
+			function fn(){
+				for(var i=0;i<divs.length;i++){
+					move(divs[i],arr[i],500,'easeBoth');
+					divs[i].onclick = arr2[i];
+					divs[i].style.zIndex = arr[i].zIndex;	
+				}
+			}
+		</script>
+	</body>
+</html>

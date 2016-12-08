@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				margin:0;
+			}
+			#box{
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left:0;
+				top:0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script>
+		var div = document.getElementById("box");
+		var arr = [];
+		
+		document.onkeydown = function(ev){
+			arr[ev.which] = true;
+			console.log(arr)
+		}
+		document.onkeyup = function(ev){
+			arr[ev.which] = false;
+		}
+		setInterval(function(){
+			if(arr[37]){
+				div.style.left = div.offsetLeft - 10+'px';
+			}
+			if(arr[38]){
+				div.style.top = div.offsetTop - 10+'px';
+			}
+			if(arr[39]){
+				div.style.left = div.offsetLeft + 10+'px';
+			}
+			if(arr[40]){
+				div.style.top = div.offsetTop + 10+'px';
+			}
+		},16);
+		
+	</script>
+</html>

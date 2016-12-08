@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="move.js" ></script>
+<script>
+window.onload = function () {
+	var str = '';
+	var len = 20;
+	var aDiv = document.getElementsByTagName('div');
+	var timer = null;
+	var num = 0;
+	var onOff = true;
+	var top = true;
+	for ( var i=0; i<len; i++ ) {
+		str += '<div style="width:50px; height:50px; background:red; position:absolute; top:0px; left:'+ i*60 +'px;"></div>';
+	}
+	
+	document.body.innerHTML = str;
+	
+	document.onclick = function () {
+		if(onOff){
+			onOff = false;
+			timer = setInterval( function (){
+				if(top){
+					move( aDiv[num], 'top', 23, 500,fn(num));
+				}else{
+					move( aDiv[num], 'top', 23, 0,fn(num));
+				}
+				num ++;
+				if ( num === len ) {
+					num=0;
+					clearInterval( timer );
+				}
+			}, 100 );
+		}
+		function fn(n){
+			if(n==len-1){
+				top = !top;
+				onOff = true;
+			}
+		}
+	};
+	
+	function move(obj, attr,speed,target,endFn){//回调函数,当。。。完成后再执行。。。
+			clearInterval(obj.time);
+			var left = parseFloat(getComputedStyle(obj)[attr]); //初始位置400
+			if(target<left){
+					speed = -speed;
+			}
+			obj.time = setInterval(function(){
+				left = parseFloat(getComputedStyle(obj)[attr]); //初始位置400
+				s = left+speed;
+				if((speed<0 && s<=target)||(speed>0 && s>=target)){
+					s=target;
+					clearInterval(obj.time);
+				}
+				obj.style[attr] = s+'px';
+				if(s==target){
+					endFn && endFn();
+				}
+			},20);
+		}
+};
+</script>
+
+</head>
+
+<body>
+</body>
+</html>
+
