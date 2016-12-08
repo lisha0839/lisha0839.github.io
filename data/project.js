@@ -15,7 +15,7 @@
 var projects = [
 		{
 			projectName:"百度网盘",
-			projectWebsite:"cases/百度网盘/百度云.html",
+			projectWebsite:"cases/baiduyun/百度云.html",
 		    startTime:"2016年",
 			endTime:"",
 			projectExplain:"使用原生JavaScript完成，可新建、重命名、移动文件夹，仿系统框选完成对文件夹的多选，拖动文件夹会进行碰撞检测，双击文件夹可进入子文件",
@@ -24,7 +24,7 @@ var projects = [
 		},
 		{
 			projectName:"新浪开放平台首页静态页面",
-			projectWebsite:"cases/页面/新浪开放平台/sina.html",
+			projectWebsite:"cases/page/sina/sina.html",
 		    startTime:"2015年",
 			endTime:"",
 			projectExplain:"兼容各浏览器，ie兼容至ie6",
@@ -33,7 +33,7 @@ var projects = [
 		},
 		{
 			projectName:"某电商静态页面",
-			projectWebsite:"cases/页面/商业网站/bussines.html",
+			projectWebsite:"cases/page/business/bussines.html",
 		    startTime:"2015年",
 			endTime:"",
 			projectExplain:"兼容各浏览器",
