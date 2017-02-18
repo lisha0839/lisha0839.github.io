@@ -47,7 +47,7 @@ var casees = [
 			caseList:[
 				{
 					caseTitle:"1-带缩略图的图片切换",
-					publishTime:"2016-8-2",
+					publishTime:"",
 					caseThumbnail:"cases/this/img/case-1.gif",
 					caseDescription:"描述：鼠标移入li,显示对应图片的缩略图，点击切换图片",
 					caseWebsite:"cases/this/1.html"
