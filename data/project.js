@@ -18,7 +18,7 @@ var projects = [
 			projectWebsite:"cases/shopcar/cart.html",
 		    startTime:"",
 			endTime:"",
-			projectExplain:"本项目结合商品加入购物车，选择配送地址的流程，采用Vue2.0完成,并使用Vue-resource插件获取模拟数据。通过该项目熟悉了Vue2.0的各种指令、事件及过滤器的使用，了解了ES6的相关知识。"
+			projectExplain:"本项目结合商品加入购物车，选择配送地址的流程，采用Vue2.0完成,并使用Vue-resource插件获取模拟数据。通过该项目熟悉了Vue2.0的各种指令、事件及过滤器的使用，了解了ES6的相关知识。",			
 			projectLabel:["html","css","javaScript","Vue"],
 			projectThumbnail:"images/icon/project-3.png"
 		},
