@@ -918,3 +918,6 @@
 #blue .list_bar,#blue .right_bar {
 	background: #6fc0f3;
 }
+.footer{
+	display:none;
+}
