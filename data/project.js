@@ -14,13 +14,22 @@
 
 var projects = [
 		{
-			projectName:"购物车商品选送",
+			projectName:"购物车商品选送-Vue",
 			projectWebsite:"cases/shopcar/cart.html",
 		    startTime:"",
 			endTime:"",
-			projectExplain:"本项目结合商品加入购物车，选择配送地址的流程，采用Vue2.0完成,并使用Vue-resource插件获取模拟数据。通过该项目熟悉了Vue2.0的各种指令、事件及过滤器的使用，了解了ES6的相关知识。
+			projectExplain:"本项目结合商品加入购物车，选择配送地址的流程，采用Vue2.0完成,并使用Vue-resource插件获取模拟数据。通过该项目熟悉了Vue2.0的各种指令、事件及过滤器的使用，了解了ES6的相关知识。",
 			projectLabel:["html","css","javaScript","Vue"],
-			projectThumbnail:"images/icon/project-3.png"
+			projectThumbnail:"images/icon/shopcar.png"
+		},
+		{
+			projectName:"ToDoList-Vue",
+			projectWebsite:"cases/todolist/todolist.html",
+		    startTime:"",
+			endTime:"",
+			projectExplain:"本项目采用Vue完成，可以完成新建、删除、编辑任务及确认任务状态，使用localStorage存储任务，利用hashChange根据任务状态切换显示列表。通过该项目熟悉了Vue的相关指令、事件及过滤器和计算属性的使用，对Vue有了更进一步的了解。",
+			projectLabel:["html","css","javaScript","Vue"],
+			projectThumbnail:"images/icon/todolist.png"
 		},
 		{
 			projectName:"百度网盘",
