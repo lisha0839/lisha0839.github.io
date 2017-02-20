@@ -16,9 +16,14 @@
 	color: #bec4c9;
 	}
 #black .intro_right .pic {
-	border-radius:50%;
+	
     border: 3px solid #fff;
     background: url(../images/icon/intro_03.png) no-repeat;
+}
+#black .intro_right .pic img{
+	border-radius:50%;
+	width:200px;
+	height:200px;
 }
 #black .intro_circle {
 	background: #696969;
