@@ -25,7 +25,8 @@ var userInfo = {
     jobWant:  "前端开发",
     userQQ:  "627655407",
     userEmail:   "lisha0839@163.com",
-    motto:  "路在脚下", 
+    motto:  "熟练使用HTML、CSS进行页面重构，并有效解决浏览器兼容问题；熟悉JavaScript、JQuery、zepto.js、fullpage.js，\
+           熟悉移动端开发，熟练git，对前端充满兴趣，目前正在学习Vue、webpack", 
     userPhone: 18228023527,
     userOrignPlace:  "四川省广元市苍溪县" ,
     userSeatPlace:  "成都市",
