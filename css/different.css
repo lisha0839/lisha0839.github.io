@@ -18,7 +18,7 @@
 #black .intro_right .pic {
 	
     border: 3px solid #fff;
-    /*background: url(../images/icon/intro_03.png) no-repeat;*/
+    background: url(../images/icon/intro_03.png) no-repeat;
 }
 #black .intro_right .logoimg{
 	border-radius:50%;
@@ -327,6 +327,11 @@
 #red .intro_right .pic {
     border: 3px solid #e16b5f;
     background: url(../images/icon/intro_03.png) no-repeat;
+}
+#red .intro_right .logoimg{
+	border-radius:50%;
+	width:200px;
+	height:200px;
 }
 #red .intro_circle {
 	background: #734776;
@@ -637,6 +642,11 @@
 	}
 #blue .intro_right .pic {
     border: 3px solid #1eb5f2;
+}
+#blue .intro_right .logoimg{
+	border-radius:50%;
+	width:200px;
+	height:200px;
 }
 #blue .intro_circle {
 	background: #1eb5f2;
