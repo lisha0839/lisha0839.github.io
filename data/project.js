@@ -32,6 +32,15 @@ var projects = [
 			projectThumbnail:"images/icon/todolist.png"
 		},
 		{
+			projectName:"音乐播放器",
+			projectWebsite:"cases/musicPlayer/music.html",
+		    startTime:"",
+			endTime:"",
+			projectExplain:"播放页面的整体布局借鉴了QQ音乐播放页面，通过html5中的Audio标签，使用JQuery模拟了音乐播放器的几个主要功能，如上下曲切换，播放暂停切换，播放列表，音量调节，歌曲进度调节，并获取音乐真实频谱，使用canvas进行可视化的呈现。",
+			projectLabel:["html","css","javaScript","JQuery"],
+			projectThumbnail:"images/icon/music.png"
+		},
+		{
 			projectName:"百度网盘",
 			projectWebsite:"cases/baiduyun/百度云.html",
 		    startTime:"",
@@ -45,16 +54,16 @@ var projects = [
 			projectWebsite:"cases/page/sina/sina.html",
 		    startTime:"",
 			endTime:"",
-			projectExplain:"该项目为新浪平台首页静态页面，兼容各浏览器，ie兼容至ie6",
+			projectExplain:"使用html、css完成新浪平台首页静态页面，兼容各浏览器，ie兼容至ie6",
 			projectLabel:["html","css"],
 			projectThumbnail:"images/icon/project-1.png"
 		},
 		{
-			projectName:"某电商静态页面",
+			projectName:"电商网站静态页面",
 			projectWebsite:"cases/page/business/bussines.html",
 		    startTime:"",
 			endTime:"",
-			projectExplain:"兼容各浏览器",
+			projectExplain:"使用html、css完成电商网站静态页面的编写，并兼容各浏览器",
 			projectLabel:["html","css"],
 			projectThumbnail:"images/icon/project-2.png"
 		}	
