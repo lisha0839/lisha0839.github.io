@@ -14,6 +14,15 @@
 
 var projects = [
 		{
+			projectName:"网易邮箱6.0-fullpage.js",
+			projectWebsite:"cases/wangyi/网易邮箱6.0.html",
+		    startTime:"",
+			endTime:"",
+			projectExplain:"采用fullpage.js全屏滚动插件完成的网易邮箱6.0，项目难点在于动画时间的调试，通过该项目熟悉了该插件的使用方法及css3动画相关知识。",
+			projectLabel:["html","css","jQuery","fullpage.js"],
+			projectThumbnail:"images/icon/wangyi.png"
+		},
+		{
 			projectName:"购物车商品选送-Vue",
 			projectWebsite:"cases/shopcar/cart.html",
 		    startTime:"",
